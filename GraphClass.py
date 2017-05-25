@@ -171,5 +171,3 @@ graph = Graph(vertices, edges)
 # for vertex in graph.find_shortest_path(b_vertex, f_vertex):
 #     print vertex
 
-
-print graph.getSortedEdges()
