@@ -54,15 +54,15 @@ class Graph:
         sorted_edges = self.getSortedEdges()
         while (self.allNodesVisited()):
             for edge in sorted_edges:
-                if self.doesNotCreateCyle(path, edge):
+                if self.doesNotCreateCycle(path, edge):
                     path.append(edge)
                     sorted_edges.remove(edge)
         return path
-    def doesNoteCreateCycle(self, path, edge):
+    def doesNotCreateCycle(self, path, edge):
         pass
     def allNodesVisited(self):
         for vertex in self.vertices:
-            if not vertex.isVisited:
+            if not vertex.isVisited():
                 return False
         return True
     def bfs(self, start):
@@ -170,5 +170,6 @@ graph = Graph(vertices, edges)
 #     print vertex.getVertex(), distances[1][vertex].getVertex()
 # for vertex in graph.find_shortest_path(b_vertex, f_vertex):
 #     print vertex
+
 
 print graph.getSortedEdges()
