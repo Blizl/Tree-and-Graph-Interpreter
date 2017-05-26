@@ -9,6 +9,8 @@ class Vertex:
         return "Vertex %s" % self.vertex_name
     def __eq__(self, obj):
         return self.vertex_name == obj.vertex_name
+    def __hash__(self):
+        return hash(self.vertex_name)
     def getVertex(self):
         return self.vertex_name
     def getWeight(self):
@@ -91,7 +93,7 @@ class Graph:
                 return edge.getWeight()
     def dfs(self, vertex):
         adjacent_vertices = self.get_adjacent_vertices(vertex)
-        if adjacent_vertices < self.visited: 
+        if adjacent_vertices < self.visited:
             return None
         else:
             self.visited.append(vertex)
@@ -99,9 +101,34 @@ class Graph:
                 if adjacent_vertex not in self.visited:
                     self.dfs(adjacent_vertex)
             return self.visited
-    def prims_algorithm(self):
-        pass 
-
+    def prims_algorithm(self, vertex):
+        path = []
+        while len(path) != len(self.vertices) -1:
+            edge = self.getLowestWeightEdge(vertex, path)
+            path.append(edge)
+            vertex = edge.getDestination()
+        return path
+    def getLowestWeightEdge(self, vertex, path):
+        adjacent_edges = self.get_adjacent_edges(vertex)
+        lowest_weight_edge = Edge(Vertex('X'), Vertex('X'), 9999)
+        visited_nodes = self.get_visited_nodes_from_edges(path)
+        for edge in adjacent_edges:
+            if edge.getDestination() not in visited_nodes:
+                if edge.getWeight() < lowest_weight_edge.getWeight():
+                    lowest_weight_edge = edge
+        return lowest_weight_edge
+    def get_visited_nodes_from_edges(self, path):
+        visited_nodes = set()
+        for edge in path:
+            visited_nodes.add(edge.getDestination())
+            visited_nodes.add(edge.getSource())
+        return visited_nodes
+    def get_adjacent_edges(self, vertex):
+        adjacent_edges = []        
+        for edge in self.edges:
+            if edge.getSource() == vertex:
+                adjacent_edges.append(edge)
+        return adjacent_edges
     def find_shortest_path(self, start_vertex, end_vertex):
         distances, prev = self.djisktra(start_vertex) 
         path = []
