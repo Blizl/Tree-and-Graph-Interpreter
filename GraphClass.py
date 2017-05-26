@@ -140,6 +140,7 @@ class Graph:
         path.reverse()
         return path
     def djisktra(self, start_vertex):
+        """TODO: Currently only works on undirected graphs, need to add in directed graph functionality too"""
         queue = deque([])
         distances = {}
         prev = {}
@@ -157,7 +158,7 @@ class Graph:
         return distances, prev
     def get_adjacent_vertices(self, vertex):
         adjacent_vertices = []
-        for edge in edges:
+        for edge in self.edges:
             if edge.getDestination() == vertex:
                 adjacent_vertices.append(edge.getSource())
             elif edge.getSource() == vertex:
@@ -168,43 +169,3 @@ class Graph:
         return sorted_edges
     def getVertices(self):
         return self.vertices
-
-vertices = []
-a_vertex =Vertex('A')
-b_vertex = Vertex('B')
-c_vertex = Vertex('C')
-d_vertex = Vertex('D')
-e_vertex =Vertex('E')
-f_vertex = Vertex('F')
-vertices.append(a_vertex)
-vertices.append(b_vertex)
-vertices.append(c_vertex)
-vertices.append(d_vertex)
-vertices.append(e_vertex)
-vertices.append(f_vertex)
-edges = []
-edges.append(Edge(a_vertex, c_vertex, 1))
-edges.append(Edge(a_vertex, b_vertex, 3))
-edges.append(Edge(b_vertex, d_vertex, 2))
-edges.append(Edge(b_vertex, e_vertex, 2))
-edges.append(Edge(c_vertex, f_vertex, 2))
-edges.append(Edge(c_vertex, a_vertex, 2))
-edges.append(Edge(d_vertex, b_vertex, 2))
-edges.append(Edge(e_vertex, f_vertex, 2))
-edges.append(Edge(e_vertex, b_vertex, 2))
-edges.append(Edge(f_vertex, c_vertex, 2))
-edges.append(Edge(f_vertex, e_vertex, 2))
-
-graph = Graph(vertices, edges)
-# for vertex in graph.dfs(a_vertex):
-#     print vertex.getVertex()
-# for vertex in graph.bfs(a_vertex):
-    # print vertex.getVertex()
-# distances = graph.djisktra(a_vertex) TODO: Seems like it's failing again for some reason
-# for vertex in distances[0].keys():
-#     print vertex.getVertex(), distances[0][vertex]
-# for vertex in distances[1].keys():
-#     print vertex.getVertex(), distances[1][vertex].getVertex()
-# for vertex in graph.find_shortest_path(b_vertex, f_vertex):
-#     print vertex
-

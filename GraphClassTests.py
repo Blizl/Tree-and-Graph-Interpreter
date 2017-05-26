@@ -118,7 +118,6 @@ class GraphClassTests(unittest.TestCase):
         path = []
         edge = graph.getLowestWeightEdge(Vertex('A'), path)
         self.assertEqual(Edge(Vertex('A'), Vertex('C'), 1), edge)
-    # @unittest.skip("Skipping prim algo test")
     def test_prims_algo(self):
         graph = self.create_undirected_graph()
         a_vertex = Vertex('A')
@@ -140,3 +139,8 @@ class GraphClassTests(unittest.TestCase):
         visited_nodes = graph.get_visited_nodes_from_edges(path)
         correct_nodes = set([Vertex('A'), Vertex('B'), Vertex('C')])
         self.assertEqual(visited_nodes, correct_nodes)
+    def test_shortest_path(self):
+        graph = self.create_undirected_graph()
+        expected_path = graph.find_shortest_path(Vertex('A'), Vertex('E'))
+        correct_path = [Vertex('A'), Vertex('B'),Vertex('E')]
+        self.assertEqual(expected_path, correct_path)
