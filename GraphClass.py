@@ -7,6 +7,8 @@ class Vertex:
         self.visited = visited
     def __repr__(self):
         return "Vertex %s" % self.vertex_name
+    def __eq__(self, obj):
+        return self.vertex_name == obj.vertex_name
     def getVertex(self):
         return self.vertex_name
     def getWeight(self):
@@ -27,6 +29,9 @@ class Edge:
         self.visited = visited
     def __repr__(self):
         return "Edge (%s, %s) weight: %s" %(self.source, self.destination, self.weight)
+    def __eq__(self, obj):
+        return self.weight == obj.weight and self.source == obj.source and self.destination == obj.destination
+
     def getSource(self):
         return self.source
     def getDestination(self):
@@ -52,14 +57,19 @@ class Graph:
     def kruskals_algorithm(self):
         path = []
         sorted_edges = self.getSortedEdges()
-        while (self.allNodesVisited()):
+        while len(path) != len(self.vertices) -1:
             for edge in sorted_edges:
                 if self.doesNotCreateCycle(path, edge):
                     path.append(edge)
                     sorted_edges.remove(edge)
         return path
     def doesNotCreateCycle(self, path, edge):
-        pass
+        for edge_in_path in path:
+            destination_vertex = edge_in_path.getDestination()
+            destination_vertex.setVisited(True)
+            if destination_vertex == edge.getDestination():
+                return False
+        return True
     def allNodesVisited(self):
         for vertex in self.vertices:
             if not vertex.isVisited():
