@@ -138,5 +138,3 @@ class BSTTests(unittest.TestCase):
         bst = BST()
         self.assertEquals(2, bst.get_height(node_5))
 
-    def testOr(self):
-        self.assertFalse(True ^ True);
