@@ -4,6 +4,7 @@ class Node:
         self.next = None
     def __repr__(self):
         return "Node %s" % data
+
 class Stack:
     def __init__(self):
         self.storage = []
