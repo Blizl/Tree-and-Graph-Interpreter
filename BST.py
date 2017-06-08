@@ -89,3 +89,12 @@ class BST(object):
             return True
         else:
             return False
+
+    def get_height(self, node):
+        if node is None:
+            return
+        if node.left:
+            return 1 + self.get_height(node.left)
+        if node.right:
+            return 1 +self.get_height(node.right)
+        return 0

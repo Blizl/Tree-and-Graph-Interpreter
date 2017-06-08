@@ -88,5 +88,55 @@ class BSTTests(unittest.TestCase):
         bst = BST()
         bst.removeNode(None, node_5, 7)
         self.assertEquals(node_3.right.data, 8)
+
+    def testFoundSearch(self):
+        node_1 = Node(1, None, None)
+        node_6 = Node(3, None, None)
+        node_2 = Node(2, node_1, node_6)
+        node_0 = Node(0, None, None)
+        node_8 = Node(8, None, None)
+        node_7 = Node(7, node_0, node_8)
+        node_3 = Node(4, node_2, node_7)
+        node_4 = Node(6, None, None)
+        node_5 = Node(5, node_3, node_4)
+        bst = BST()
+        self.assertTrue(bst.search(node_5, 7))
+
+    def testNotFoundSearch(self):
+        node_1 = Node(1, None, None)
+        node_6 = Node(3, None, None)
+        node_2 = Node(2, node_1, node_6)
+        node_0 = Node(0, None, None)
+        node_8 = Node(8, None, None)
+        node_7 = Node(7, node_0, node_8)
+        node_3 = Node(4, node_2, node_7)
+        node_4 = Node(6, None, None)
+        node_5 = Node(5, node_3, node_4)
+        bst = BST()
+        self.assertTrue(bst.search(node_5, 9))
+
+    def testHeight(self):
+        node_2 = Node(2, None, None)
+        node_4 = Node(4, node_2, None)
+        node_6 = Node(6, None, None)
+        node_5 = Node(5, node_4, node_6)
+        bst = BST()
+        self.assertEquals(2, bst.get_height(node_5))
+        self.assertEquals(1, bst.get_height(node_4))
+
+    def testHeightOneNode(self):
+        node_5 = Node(5, None, None)
+        bst = BST()
+        self.assertEquals(0, bst.get_height(node_5))
+
+    def testHeightV2(self):
+        node_2 = Node(2, None, None)
+        node_7 = Node(7, None, None)
+        node_4 = Node(4, node_2, node_7)
+        node_6 = Node(6, None, None)
+        node_5 = Node(5, node_4, node_6)
+        bst = BST()
+        self.assertEquals(2, bst.get_height(node_5))
+
     def testOr(self):
         self.assertFalse(True ^ True);

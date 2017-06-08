@@ -1,3 +1,4 @@
+
 class BinaryTreeTraversals:
     def left(self, node, tree):
         node_index = tree.index(node)
