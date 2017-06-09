@@ -13,6 +13,10 @@ class Node(object):
 
 
 class BST(object):
+    """TODO: Refactor methods so that functions are based off of root instead of taking in a node"""
+    def __init__(self, root):
+        self.root = root
+
     def insert(self, node, value):
         if node is None:
             return Node(value, None, None)
@@ -23,14 +27,17 @@ class BST(object):
         return node
 
     def search(self, node, value):
-        if node.data == value:
-            return True
+        # if node is None or node.data == value:
+        #     return node
         if node is None:
             return False
+        if node.data == value:
+            return True
+
         if node.data > value:
-            self.search(node.left, value)
+            return self.search(node.left, value)
         else:
-            self.search(node.right, value)
+            return self.search(node.right, value)
 
     def removeNode(self, prev_node, curr_node, value):
         if curr_node.data == value:
@@ -85,7 +92,7 @@ class BST(object):
             return False
 
     def one_child(self, node):
-        if node.left ^ node.right:
+        if self.xor(node.left,node.right):
             return True
         else:
             return False
@@ -96,5 +103,22 @@ class BST(object):
         if node.left:
             return 1 + self.get_height(node.left)
         if node.right:
-            return 1 +self.get_height(node.right)
+            return 1 + self.get_height(node.right)
         return 0
+
+    def xor(self, node1, node2):
+        if node1 is None and node2 is None:
+            return False
+        if node1 is not None and node2 is not None:
+            return False
+        return True
+
+    def printAllNodes(self):
+        self.printNode(self.root)
+
+    def printNode(self, node):
+        print [node, node.left, node.right]
+        if node.left is not None:
+            self.printNode(node.left)
+        if node.right is not None:
+            self.printNode(node.right)

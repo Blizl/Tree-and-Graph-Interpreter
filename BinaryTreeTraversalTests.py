@@ -40,5 +40,3 @@ class BinaryTreeTraversalTests(unittest.TestCase):
     #     actual_weight = btt.max_path(tree, max_weight, a_vertex)
     #     expect_weight = 15
     #     self.assertEqual(actual_weight, expect_weight)
-if __name__ == '__main__':
-    unittest.main()
