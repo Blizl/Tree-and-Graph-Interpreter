@@ -3,14 +3,47 @@
 
 
 class Node(object):
-    def __init__(self, data, left, right):
+    def __init__(self, data, left, right, is_root=False, parent=None):
         self.data = data
         self.left = left
         self.right = right
+        self.is_root = is_root
+        self.parent = parent
 
     def __repr__(self):
         return "Node data is %s" %(self.data)
 
+    def has_left_child(self):
+        if self.left is not None:
+            return True
+        else:
+            return False
+
+    def has_right_child(self):
+        if self.right is not None:
+            return True
+        else:
+            return False
+
+    def has_no_children(self):
+        if self.right is None and self.left is None:
+            return True
+        else:
+            return False
+
+    def is_left_child(self):
+        if self.parent is not None:
+            if self.parent.left is not None and self.parent.left.data == self.data:
+                return True
+            else:
+                return False
+
+    def is_right_child(self):
+        if self.parent is not None:
+            if self.parent.right is not None and self.parent.right.data == self.data:
+                return True
+            else:
+                return False
 
 class BST(object):
     """TODO: Refactor methods so that functions are based off of root instead of taking in a node"""
@@ -19,12 +52,18 @@ class BST(object):
 
     def insert(self, node, value):
         if node is None:
-            return Node(value, None, None)
-        if node.data > value:
-            node.left = self.insert(node.left, value)
+            node = Node(value, None, None, False, None)
         else:
-            node.right = self.insert(node.right, value)
-        return node
+            if node.data > value:
+                if node.left is None:
+                    node.left = Node(value, None, None, False, node)
+                else:
+                    self.insert(node.left, value)
+            else:
+                if node.right is None:
+                    node.right = Node(value, None, None, False, node)
+                else:
+                    self.insert(node.right, value)
 
     def search(self, node, value):
         # if node is None or node.data == value:
@@ -92,7 +131,7 @@ class BST(object):
             return False
 
     def one_child(self, node):
-        if self.xor(node.left,node.right):
+        if self.xor(node.left, node.right):
             return True
         else:
             return False
@@ -122,3 +161,38 @@ class BST(object):
             self.printNode(node.left)
         if node.right is not None:
             self.printNode(node.right)
+
+    def allNodesRightAreLarger(self):
+        return self.nodes_right_larger_helper(self.root.right)
+
+    def nodes_right_larger_helper(self, node):
+        if node is None:
+            return True
+        if node.data < self.root.data:
+            return False
+        else:
+            if self.nodes_right_larger_helper(node.left) is False:
+                return False
+
+            if self.nodes_right_larger_helper(node.right) is False:
+                return False
+            else:
+                return True
+
+    def nodes_left_are_smaller(self):
+        return self.nodes_left_are_smaller_helper(self.root.left)
+
+    def nodes_left_are_smaller_helper(self, node):
+        if node is None:
+            return True
+
+        if node.data > self.root.data:
+            return False
+        else:
+            if self.nodes_left_are_smaller_helper(node.left) is False:
+                return False
+            if self.nodes_left_are_smaller_helper(node.right) is False:
+                return False
+            else:
+                return True
+
