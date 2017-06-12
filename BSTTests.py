@@ -140,3 +140,16 @@ class BSTTests(unittest.TestCase):
         bst = BST(node_5)
         self.assertEquals(2, bst.get_height(node_5))
 
+    def test_min(self):
+        node_1 = Node(1, None, None)
+        node_3 = Node(3, None, None)
+        node_2 = Node(2, node_1, node_3, True)
+        bst = BST(node_2)
+        self.assertEquals(bst.tree_min(bst.root).data, 1)
+
+    def test_max(self):
+        node_1 = Node(1, None, None)
+        node_3 = Node(3, None, None)
+        node_2 = Node(2, node_1, node_3, True)
+        bst = BST(node_2)
+        self.assertEquals(bst.tree_max(bst.root).data, 3)

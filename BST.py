@@ -196,3 +196,12 @@ class BST(object):
             else:
                 return True
 
+    def tree_min(self, x):
+        while x.left is not None:
+            x = x.left
+        return x
+
+    def tree_max(self, x):
+        while x.right is not None:
+            x = x.right
+        return x

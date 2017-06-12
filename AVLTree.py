@@ -76,7 +76,9 @@ class AVLTree(BST):
         new_root.right = old_root
         new_root.parent = old_root.parent
         if old_root.is_root:
+            old_root.is_root = False
             self.root = new_root
+            self.root.is_root = True
         if old_root.is_left_child():
             old_root.parent.left = new_root
         else:
@@ -94,7 +96,9 @@ class AVLTree(BST):
             new_root.left.parent = old_root
         new_root.parent = old_root.parent
         if old_root.is_root:
+            old_root.is_root = False
             self.root = new_root
+            self.root.is_root = True
         else:
             if old_root.is_left_child():
                 old_root.parent.left = new_root
