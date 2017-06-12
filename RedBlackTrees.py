@@ -143,7 +143,30 @@ class RedBlackTree(AVLTree):
             return True
 
     def same_num_black_children_per_path(self):
-        return True
+        if self.get_black_height(self.root) == 0:
+            return False
+        else:
+            return True
+
+
+    def get_black_height(self, node):
+        if node is None:
+            return 1
+        left_black_height = self.get_black_height(node.left)
+        if left_black_height == 0:
+            return left_black_height
+
+        right_black_height = self.get_black_height(node.right)
+        if right_black_height == 0:
+            return right_black_height
+        if left_black_height != right_black_height:
+            return 0
+        else:
+            # return left_black_height + node.is_black() ? 1:0
+            if node.is_black():
+                return left_black_height + 1
+            else:
+                return left_black_height
 
     def rb_transplant(self, u, v):
         if u.parent is None:
@@ -224,6 +247,4 @@ class RedBlackTree(AVLTree):
                 self.right_rotate(x.parent)
                 x = self.root
         x.color = "black"
-
-
 

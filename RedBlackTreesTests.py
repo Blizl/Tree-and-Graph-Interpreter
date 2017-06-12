@@ -82,3 +82,11 @@ class RedBlackTreeTests(unittest.TestCase):
         rb_tree.remove(node_2)
         self.assertFalse(rb_tree.search(rb_tree.root, 2))
         self.assertTrue(rb_tree.maintains_rb_properties())
+
+    def test_get_black_height(self):
+        root_node = RedBlackNode(5, None, None, "black", True)
+        rb_tree = RedBlackTree(root_node)
+        node_8 = RedBlackNode(8, None, None, "red")
+        node_7 = RedBlackNode(7, None, None, "red")
+        node_4 = RedBlackNode(4, None, None, "red")
+        self.assertEquals(rb_tree.get_black_height(rb_tree.root), 2)
