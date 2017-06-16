@@ -148,7 +148,6 @@ class RedBlackTree(AVLTree):
         else:
             return True
 
-
     def get_black_height(self, node):
         if node is None:
             return 1
@@ -162,7 +161,6 @@ class RedBlackTree(AVLTree):
         if left_black_height != right_black_height:
             return 0
         else:
-            # return left_black_height + node.is_black() ? 1:0
             if node.is_black():
                 return left_black_height + 1
             else:
