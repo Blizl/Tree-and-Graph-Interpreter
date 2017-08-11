@@ -1,0 +1,34 @@
+Reading graph
+Num nodes: 12
+Num edges (one direction): 21
+Num edges (bi- direction): 42
+
+Greedy Coloring took: 5.5e-05s | Limit was: 300s
+Victor's computer
+Min conflict count is 0
+0 is 0
+1 is 1
+2 is 0
+3 is 1
+4 is 0
+5 is 2
+6 is 1
+7 is 0
+8 is 1
+9 is 0
+10 is 2
+11 is 3
+Faster Adv. Local Search Algorithm Coloring took: 3.1e-05s | Limit was: 300s
+Min conflict count is 0
+0 is 0
+1 is 1
+2 is 0
+3 is 1
+4 is 0
+5 is 2
+6 is 1
+7 is 0
+8 is 1
+9 is 0
+10 is 2
+11 is 3
