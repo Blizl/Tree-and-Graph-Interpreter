@@ -95,10 +95,7 @@ class AVLTreeTests(unittest.TestCase):
         avl_tree.insert(avl_tree.root, 6)
         avl_tree.insert(avl_tree.root, 7)
         avl_tree.insert(avl_tree.root, 8)
-        # avl_tree.insert(root_node, 8)
         avl_tree.insert(avl_tree.root, 1)
-        # avl_tree.insert(root_node, 3)
-        # avl_tree.printAllNodes()
 
     def testLeftRotateRoot(self):
         root_node=  AVLNode(5, None, None, True)
@@ -106,7 +103,6 @@ class AVLTreeTests(unittest.TestCase):
         avl_tree.insert(avl_tree.root, 6)
         avl_tree.insert(avl_tree.root, 7)
 
-        # avl_tree.printAllNodes()
 
     def testLeftRotateNonRoot(self):
         root_node = AVLNode(5, None, None, True)
@@ -114,7 +110,6 @@ class AVLTreeTests(unittest.TestCase):
         avl_tree.insert(avl_tree.root, 6)
         avl_tree.insert(avl_tree.root, 7)
         avl_tree.insert(avl_tree.root, 8)
-        # avl_tree.printAllNodes()
         self.assertTrue(avl_tree.allNodesRightAreLarger())
         self.assertTrue(avl_tree.nodes_left_are_smaller())
 
@@ -129,7 +124,6 @@ class AVLTreeTests(unittest.TestCase):
         avl_tree = AVLTree(root_node)
         avl_tree.insert(avl_tree.root, 4)
         avl_tree.insert(avl_tree.root, 3)
-        # avl_tree.printAllNodes()
         self.assertTrue(avl_tree.allNodesRightAreLarger())
         self.assertTrue(avl_tree.nodes_left_are_smaller())
 
@@ -139,7 +133,6 @@ class AVLTreeTests(unittest.TestCase):
         avl_tree.insert(avl_tree.root, 4)
         avl_tree.insert(avl_tree.root, 3)
         avl_tree.insert(avl_tree.root, 1)
-        # avl_tree.printAllNodes()
         self.assertTrue(avl_tree.allNodesRightAreLarger())
         self.assertTrue(avl_tree.nodes_left_are_smaller())
 
@@ -148,14 +141,12 @@ class AVLTreeTests(unittest.TestCase):
         avl_tree = AVLTree(root_node)
         avl_tree.insert(avl_tree.root, 4)
         avl_tree.insert(avl_tree.root, 3)
-        # avl_tree.printAllNodes()
         self.assertTrue(avl_tree.allNodesRightAreLarger())
 
     def testAllNodesRightAreLargerNegative(self):
         node_1 = AVLNode(1, None, None)
         root_node = AVLNode(5, None, node_1, True)
         avl_tree = AVLTree(root_node)
-        # avl_tree.printAllNodes()
         self.assertFalse(avl_tree.allNodesRightAreLarger())
 
     def testallNodesLeftAreSmallerPositive(self):
@@ -164,14 +155,12 @@ class AVLTreeTests(unittest.TestCase):
         avl_tree.insert(avl_tree.root, 4)
         avl_tree.insert(avl_tree.root, 3)
         avl_tree.insert(avl_tree.root, 2)
-        # avl_tree.printAllNodes()
         self.assertTrue(avl_tree.nodes_left_are_smaller())
 
     def testallNodesLeftAreSmallerNegative(self):
         node_1 = AVLNode(7, None, None)
         root_node = AVLNode(5, node_1, None)
         avl_tree = AVLTree(root_node)
-        # avl_tree.printAllNodes()
         self.assertFalse(avl_tree.nodes_left_are_smaller())
 
     def testrightRotateTestV3(self):

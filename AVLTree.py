@@ -38,9 +38,6 @@ class AVLTree(BST):
                 else:
                     self.insert(node.right, value)
 
-
-
-
     def update_balance(self, node):
         if node.balance_factor > 1 or node.balance_factor < -1:
             self.rebalance(node)

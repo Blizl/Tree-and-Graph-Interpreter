@@ -1,6 +1,7 @@
 import unittest
 from GraphClass import Graph, Edge, Vertex
 
+
 class GraphClassTests(unittest.TestCase):
     def createSampleGraph(self):
         vertices = []
@@ -61,15 +62,18 @@ class GraphClassTests(unittest.TestCase):
 
         graph = Graph(vertices, edges)
         return graph
+
     def test_all_nodes_visited(self):
         graph = self.createSampleGraph()
         for vertex in graph.getVertices():
             vertex.setVisited(True)
         self.assertTrue(graph.allNodesVisited())
+
     def test_one_node_visited(self):
         graph = self.createSampleGraph()
         graph.getVertices()[0].setVisited(True)
         self.assertFalse(graph.allNodesVisited())
+
     def test_contains_cycle(self):
         graph = self.createSampleGraph()
         path = []
@@ -100,6 +104,7 @@ class GraphClassTests(unittest.TestCase):
         expected_path = graph.kruskals_algorithm()
         correct_path = [Edge(Vertex('B'), Vertex('C'), 1), Edge(Vertex('A'), Vertex('B'), 2)]
         self.assertEqual(expected_path, correct_path)
+
     def test_negative_kruskals_algo(self):
         vertices = [Vertex('A'), Vertex('B'), Vertex('C')]
         edges = [Edge(Vertex('A'), Vertex('B'), 2),
@@ -109,15 +114,18 @@ class GraphClassTests(unittest.TestCase):
         correct_path = graph.kruskals_algorithm()
         incorrect_path = [Edge(Vertex('B'), Vertex('C'), 1), Edge(Vertex('A'), Vertex('B'), 10)]
         self.assertNotEqual(correct_path, incorrect_path)
+
     def test_edge_equality(self):
         edge1 = Edge(Vertex('A'), Vertex('B'), 2)
         edge2 = Edge(Vertex('A'), Vertex('B'), 2)
         self.assertEqual(edge1, edge2)
+
     def test_get_lowest_weight_edge(self):
         graph = self.createSampleGraph()
         path = []
         edge = graph.getLowestWeightEdge(Vertex('A'), path)
         self.assertEqual(Edge(Vertex('A'), Vertex('C'), 1), edge)
+
     def test_prims_algo(self):
         graph = self.create_undirected_graph()
         a_vertex = Vertex('A')
@@ -133,14 +141,21 @@ class GraphClassTests(unittest.TestCase):
                         Edge(e_vertex, b_vertex, 1),
                         Edge(b_vertex, d_vertex, 4)]
         self.assertEqual(expected_path, correct_path)
+
     def test_get_visited_nodes_from_edge(self):
         graph = self.create_undirected_graph()
         path = [Edge(Vertex('A'), Vertex('C')), Edge(Vertex('B'), Vertex('C')), Edge(Vertex('C'), Vertex('A'))]
         visited_nodes = graph.get_visited_nodes_from_edges(path)
         correct_nodes = set([Vertex('A'), Vertex('B'), Vertex('C')])
         self.assertEqual(visited_nodes, correct_nodes)
+
     def test_shortest_path(self):
         graph = self.create_undirected_graph()
         expected_path = graph.find_shortest_path(Vertex('A'), Vertex('E'))
         correct_path = [Vertex('A'), Vertex('B'),Vertex('E')]
         self.assertEqual(expected_path, correct_path)
+
+    def test_dfs(self):
+        graph = self.createSampleGraph()
+        self.assertEquals([Vertex('A'), Vertex('C'), Vertex('F'), Vertex('E'), Vertex('B'), Vertex('D')], graph.dfs(
+            Vertex('A')))
