@@ -21,10 +21,18 @@ class QuickSort(object):
             self.quicksort(_list, left, s-1)
             self.quicksort(_list, s, right)
 
+    def selection_sort(self, alist):
+        for i in range(len(alist)):
+            min = alist[i], i
+            for j in range(i,len(alist)):
+                if alist[j] < min[0]:
+                    min = alist[j], j
+            self.swap(alist, i, min[1])
 
-# a = [25, 15, 9, 76, 32, 8, 2, 19]
-# print "a before sorting is ", a
-# print "passing in %s as right" %(len(a) -1)
-# q= QuickSort()
+a = [25, 15, 9, 76, 32, 8, 2, 19]
+print "a before sorting is ", a
+print "passing in %s as right" %(len(a) -1)
+q= QuickSort()
 # q.quicksort(a, 0, len(a) -1)
-# print "a after sorting is ", a
+q.selection_sort(a)
+print "a after sorting is ", a
