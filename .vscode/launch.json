@@ -1,8 +1,14 @@
 {
     "version": "0.2.0",
     "configurations": [
-
-         {
+        {
+            "type": "java",
+            "name": "Launch Test",
+            "request": "launch",
+            "mainClass": "Test",
+            "projectName": "Tree-and-Graph-Interpreter_b7210e08"
+        },
+        {
             "name": "C++ Launch",
             "type": "cppdbg",
             "request": "launch",
@@ -36,7 +42,6 @@
                 ]
             }
         },
-
         {
             "name": "Python",
             "type": "python",
@@ -53,6 +58,5 @@
                 "RedirectOutput"
             ]
         }
-
     ]
 }
